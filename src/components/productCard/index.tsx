@@ -13,13 +13,15 @@ interface Props {
 
 const ProductCard = ({ title, description, imageUrl, price }: Props) => {
   return (
-    <Card sx={{ maxWidth: 345, minHeight: 500, p: 3 }}>
+    <Card
+      sx={{ maxWidth: 300, minHeight: { lg: 500, md: 450, xs: 300 }, p: 3 }}
+    >
       <CardActionArea
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
         <CardMedia
           component="img"
-          sx={{ width: "40%" }}
+          sx={{ width: { lg: "100px", xs: "70px" }, objectFit: "contain" }}
           image={imageUrl || ""}
           alt={title}
         />
@@ -29,7 +31,7 @@ const ProductCard = ({ title, description, imageUrl, price }: Props) => {
             {title}
           </Typography>
           <Typography gutterBottom variant="body2">
-            {description}
+            {description.substring(0, 150)} ...
           </Typography>
           <Typography variant="body1" color="text.secondary">
             {price} $

@@ -36,8 +36,17 @@ const OrderConfirmation = () => {
       <Typography variant="h4">Order: {orderId}</Typography>
       <Typography variant="h6">Status: {status}</Typography>
       <Box sx={{ mt: 2 }}>
-        <Button variant="contained" onClick={handleCancelOrder}>
+        <Button variant="contained" color="error" onClick={handleCancelOrder}>
           Cancel order
+        </Button>
+        <Button
+          variant="contained"
+          sx={{ ml: 3 }}
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          Back to home
         </Button>
       </Box>
       <Snackbar

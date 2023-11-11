@@ -13,18 +13,40 @@ const ProductDetailPage = () => {
   if (!product) return null;
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", mt: 13 }}>
-      <Box sx={{ maxWidth: 900 }}>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+
+        mt: 13,
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: "1100px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
+              justifyContent: "center",
               maxWidth: 900,
+              flexDirection: { xs: "column", lg: "row" },
             }}
           >
-            <Box>
-              <img src={product?.imageUrl || ""} width={300} />
+            <Box sx={{ maxWidth: { xs: 100, md: 200, lg: 300 } }}>
+              <img src={product?.imageUrl || ""} width={"100%"} />
             </Box>
             <Box sx={{ ml: 5 }}>
               <Typography variant="h4">{product?.title}</Typography>

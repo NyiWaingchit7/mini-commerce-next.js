@@ -6,7 +6,7 @@ import { Box, Typography } from "@mui/material";
 import { Product } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -23,7 +23,7 @@ export default function Home() {
       setFilteredProducts(products);
     }
   }, [products]);
-
+  if (!products) return null;
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <Link href={"/cart"} style={{ textDecoration: "none" }}>
@@ -35,7 +35,7 @@ export default function Home() {
             cursor: "pointer",
           }}
         >
-          <ShoppingCartIcon sx={{ fontSize: 50, color: "purple" }} />
+          <AddShoppingCartIcon sx={{ fontSize: 50, color: "purple" }} />
           {cartItems.length > 0 && (
             <Typography variant="h5" sx={{ color: "green" }}>
               {cartItems.length}

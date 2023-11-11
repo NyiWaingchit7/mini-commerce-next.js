@@ -1,6 +1,10 @@
 /* eslint-disable react/jsx-key */
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { createOrder, updateQuantity } from "@/store/slices/cartSlice";
+import {
+  clearCart,
+  createOrder,
+  updateQuantity,
+} from "@/store/slices/cartSlice";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Box, Button, Typography } from "@mui/material";
@@ -25,6 +29,7 @@ const Cart = () => {
   };
   const onSuccess = (data: any) => {
     router.push(`/comfirmation?orderId=${data.orderId}&status=${data.status}`);
+    dispatch(clearCart({}));
   };
 
   const onError = () => {};
@@ -34,48 +39,66 @@ const Cart = () => {
 
   return (
     <Box>
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 15 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 5 }}>
         {cartItems.length ? (
           <Box>
-            {cartItems.map((item) => (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  mt: 5,
-                }}
-              >
+            <Box>
+              <Typography variant="h4" sx={{ textAlign: "center", mt: 5 }}>
+                Here is your cart list
+              </Typography>
+              {cartItems.map((item) => (
                 <Box>
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <img src={item.imageUrl || ""} width={150} />
-                    <Box sx={{ ml: 3 }}>
-                      <Typography variant="h6">{item.title}</Typography>
-                      <Typography variant="h6">{item.price} $</Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      flexDirection: { xs: "column", lg: "row" },
+                      mt: { xs: 15, md: 10, lg: 5 },
+                      mb: { xs: 15, md: 15, lg: 10 },
+                      maxHeight: 100,
+                    }}
+                  >
+                    <Box>
+                      <Box sx={{ display: "flex", alignItems: "center" }}>
+                        <img src={item.imageUrl || ""} width={100} />
+                        <Box sx={{ ml: 3 }}>
+                          <Typography variant="h6">{item.title}</Typography>
+                          <Typography variant="h6">{item.price} $</Typography>
+                        </Box>
+                      </Box>
+                    </Box>
+                    <Box sx={{ ml: 5 }}>
+                      <Box sx={{ display: "flex", alignItems: "center" }}>
+                        <RemoveCircleOutlineIcon
+                          sx={{
+                            fontSize: 40,
+                            color: "green",
+                            cursor: "pointer",
+                          }}
+                          onClick={() =>
+                            decreaseQuantity(item.id, item.quantity - 1)
+                          }
+                        />
+                        <Typography sx={{ mx: 2 }} variant="h4">
+                          {item.quantity}
+                        </Typography>
+                        <AddCircleOutlineIcon
+                          sx={{
+                            fontSize: 40,
+                            color: "green",
+                            cursor: "pointer",
+                          }}
+                          onClick={() =>
+                            increaseQuantity(item.id, item.quantity + 1)
+                          }
+                        />
+                      </Box>
                     </Box>
                   </Box>
                 </Box>
-                <Box sx={{ ml: 5 }}>
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <RemoveCircleOutlineIcon
-                      sx={{ fontSize: 40, color: "green", cursor: "pointer" }}
-                      onClick={() =>
-                        decreaseQuantity(item.id, item.quantity - 1)
-                      }
-                    />
-                    <Typography sx={{ mx: 2 }} variant="h4">
-                      {item.quantity}
-                    </Typography>
-                    <AddCircleOutlineIcon
-                      sx={{ fontSize: 40, color: "green", cursor: "pointer" }}
-                      onClick={() =>
-                        increaseQuantity(item.id, item.quantity + 1)
-                      }
-                    />
-                  </Box>
-                </Box>
-              </Box>
-            ))}
+              ))}
+            </Box>
           </Box>
         ) : (
           <Typography variant="h4" sx={{ color: "red" }}>
@@ -83,6 +106,14 @@ const Cart = () => {
           </Typography>
         )}
       </Box>
+      <div
+        style={{
+          maxWidth: "1100px",
+          height: "1px",
+          backgroundColor: "black",
+          margin: "auto",
+        }}
+      ></div>
       {cartItems.length > 0 && (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Box

@@ -1,9 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { CartItem } from "@/types/cart";
-import { prisma } from "@/utlis/db";
+import prisma from "@/utlis/db";
 
 import { OrderStatus, Product } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { allowCors } from "../hello";
 
 export default async function handler(
   req: NextApiRequest,
@@ -42,3 +43,4 @@ export default async function handler(
   }
   res.status(405).send("Method not allowed.");
 }
+allowCors(handler);

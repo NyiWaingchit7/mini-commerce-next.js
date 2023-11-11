@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { prisma } from "@/utlis/db";
+import prisma from "@/utlis/db";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { allowCors } from "../../hello";
 
 type Data = {
   name: string;
@@ -24,3 +25,4 @@ export default async function handler(
   }
   res.status(405).send("Method not allowed.");
 }
+allowCors(handler);
