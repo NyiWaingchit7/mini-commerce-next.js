@@ -17,7 +17,7 @@ const ProductCard = ({ title, description, imageUrl, price }: Props) => {
       sx={{
         maxWidth: 300,
         minHeight: { lg: 500, md: 450 },
-        maxHeight: { xs: 350 },
+
         p: 3,
       }}
     >
@@ -32,18 +32,10 @@ const ProductCard = ({ title, description, imageUrl, price }: Props) => {
         />
 
         <CardContent>
-          <Typography
-            gutterBottom
-            variant="h6"
-            sx={{ fontSize: { xs: "0.7rem" } }}
-          >
+          <Typography gutterBottom variant="h6">
             {title}
           </Typography>
-          <Typography
-            gutterBottom
-            variant="body2"
-            sx={{ fontSize: { xs: "0.5rem" } }}
-          >
+          <Typography gutterBottom variant="body2">
             {description.substring(0, 150)} ...
           </Typography>
           <Typography variant="body1" color="text.secondary">
