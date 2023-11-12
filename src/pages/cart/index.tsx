@@ -96,6 +96,14 @@ const Cart = () => {
                       </Box>
                     </Box>
                   </Box>
+                  <div
+                    style={{
+                      maxWidth: "1100px",
+                      height: "1px",
+                      backgroundColor: "black",
+                      margin: "auto",
+                    }}
+                  ></div>
                 </Box>
               ))}
             </Box>
@@ -106,14 +114,7 @@ const Cart = () => {
           </Typography>
         )}
       </Box>
-      <div
-        style={{
-          maxWidth: "1100px",
-          height: "1px",
-          backgroundColor: "black",
-          margin: "auto",
-        }}
-      ></div>
+
       {cartItems.length > 0 && (
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Box
