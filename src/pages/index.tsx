@@ -25,7 +25,13 @@ export default function Home() {
   }, [products]);
   if (!products) return null;
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
       <Link href={"/cart"} style={{ textDecoration: "none" }}>
         <Box
           sx={{

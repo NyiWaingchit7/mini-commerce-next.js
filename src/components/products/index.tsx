@@ -9,7 +9,14 @@ interface Props {
 
 const Products = ({ products }: Props) => {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        ml: { xs: 5 },
+      }}
+    >
       {products.map((product) => (
         <Link
           key={product.id}
